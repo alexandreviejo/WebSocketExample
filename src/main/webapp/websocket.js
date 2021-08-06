@@ -52,7 +52,7 @@ function printDeviceElement(device) {
 
 
 function onMessage(event) {
-    var device = JSON.parse(event.data);
+    const device = JSON.parse(event.data);
     if (device.action === "add") {
         printDeviceElement(device);
     }
@@ -60,8 +60,8 @@ function onMessage(event) {
         document.getElementById(device.id).remove();
     }
     if (device.action === "toggle") {
-        var node = document.getElementById(device.id);
-        var statusText = node.children[2];
+        const node = document.getElementById(device.id);
+        const statusText = node.children[2];
         if (device.status === "On") {
             statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" id="+ device.id +" data-op=\"toggle\">Turn off</a>)";
         } else if (device.status === "Off") {
