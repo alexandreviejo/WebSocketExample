@@ -16,12 +16,11 @@ function init() {
 }
 
 
-function printDeviceElement(device) {
+function createDeviceElement(device) {
 	
     const deviceDiv = document.createElement("div");
     deviceDiv.setAttribute("id", device.id);
     deviceDiv.setAttribute("class", "device " + device.type);
-    content.appendChild(deviceDiv);
 
     const deviceName = document.createElement("span");
     deviceName.setAttribute("class", "deviceName");
@@ -48,13 +47,16 @@ function printDeviceElement(device) {
     removeDevice.setAttribute("class", "removeDevice");
 	removeDevice.innerHTML = "<a href=\"#\" id="+ device.id +" data-op=\"remove\">Remove device</a>";
     deviceDiv.appendChild(removeDevice);
+
+    return deviceDiv;
 }
 
 
 function onMessage(event) {
     const device = JSON.parse(event.data);
     if (device.action === "add") {
-        printDeviceElement(device);
+        const newDeviceElement = createDeviceElement(device);
+        content.appendChild(newDeviceElement);
     }
     if (device.action === "remove") {
         document.getElementById(device.id).remove();
@@ -129,8 +131,3 @@ content.addEventListener('click', e => {
     	socket.send(JSON.stringify(DeviceAction));
     }
 });
-
-
-
-
-
