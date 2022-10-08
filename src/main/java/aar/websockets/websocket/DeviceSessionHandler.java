@@ -3,12 +3,14 @@ package aar.websockets.websocket;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.websocket.Session;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
-import javax.websocket.Session;
+
 import aar.websockets.model.Device;
 
 @ApplicationScoped
